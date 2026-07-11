@@ -228,3 +228,77 @@ elements.cardList.addEventListener("click", (event) => {
 });
 
 render();
+let flashcards = [
+  {question: "What is HTML?", answer: "HyperText Markup Language"},
+  {question: "What is CSS?", answer: "Cascading Style Sheets"}
+];
+let currentIndex = 0;
+let showAnswer = false;
+
+const questionEl = document.getElementById("question");
+const answerEl = document.getElementById("answer");
+const showBtn = document.getElementById("showBtn");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const addBtn = document.getElementById("addBtn");
+const editBtn = document.getElementById("editBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+
+function displayCard() {
+  if(flashcards.length === 0) {
+    questionEl.textContent = "No flashcards. Add one!";
+    answerEl.textContent = "";
+    return;
+  }
+  questionEl.textContent = flashcards[currentIndex].question;
+  answerEl.textContent = showAnswer? flashcards[currentIndex].answer : "";
+}
+
+showBtn.addEventListener("click", () => {
+  showAnswer =!showAnswer;
+  displayCard();
+  showBtn.textContent = showAnswer? "Hide Answer" : "Show Answer";
+});
+
+nextBtn.addEventListener("click", () => {
+  if(currentIndex < flashcards.length - 1) currentIndex++;
+  showAnswer = false;
+  displayCard();
+  showBtn.textContent = "Show Answer";
+});
+
+prevBtn.addEventListener("click", () => {
+  if(currentIndex > 0) currentIndex--;
+  showAnswer = false;
+  displayCard();
+  showBtn.textContent = "Show Answer";
+});
+
+addBtn.addEventListener("click", () => {
+  let q = prompt("Enter Question:");
+  let a = prompt("Enter Answer:");
+  if(q && a) {
+    flashcards.push({question: q, answer: a});
+    currentIndex = flashcards.length - 1;
+    displayCard();
+  }
+});
+
+editBtn.addEventListener("click", () => {
+  let q = prompt("Edit Question:", flashcards[currentIndex].question);
+  let a = prompt("Edit Answer:", flashcards[currentIndex].answer);
+  if(q && a) {
+    flashcards[currentIndex] = {question: q, answer: a};
+    displayCard();
+  }
+});
+
+deleteBtn.addEventListener("click", () => {
+  if(confirm("Delete this flashcard?")) {
+    flashcards.splice(currentIndex, 1);
+    if(currentIndex > 0) currentIndex--;
+    displayCard();
+  }
+});
+
+displayCard();
