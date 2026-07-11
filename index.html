@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcard Quiz App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Study Smarter</p>
+          <h1>Flashcard Quiz App</h1>
+        </div>
+        <button id="addCardBtn" class="primary-btn">+ Add Card</button>
+      </header>
+
+      <main class="layout">
+        <section class="flashcard-panel">
+          <div id="flashcard" class="flashcard" role="region" aria-live="polite">
+            <p id="cardCounter" class="counter">0 / 0</p>
+            <h2 id="questionText">No cards yet</h2>
+            <div id="answerArea" class="answer-area hidden">
+              <p class="label">Answer</p>
+              <p id="answerText"></p>
+            </div>
+            <div class="actions">
+              <button id="showAnswerBtn" class="secondary-btn">Show Answer</button>
+              <div class="nav-group">
+                <button id="prevBtn" class="ghost-btn">Previous</button>
+                <button id="nextBtn" class="primary-btn">Next</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-tools">
+            <button id="editCardBtn" class="secondary-btn">Edit Card</button>
+            <button id="deleteCardBtn" class="danger-btn">Delete</button>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Your Cards</h3>
+              <span id="cardCount" class="pill">0 cards</span>
+            </div>
+            <ul id="cardList" class="card-list"></ul>
+          </div>
+
+          <form id="cardForm" class="panel form-panel">
+            <div class="panel-head">
+              <h3 id="formTitle">Add New Card</h3>
+              <button type="button" id="cancelEditBtn" class="ghost-btn hidden">Cancel</button>
+            </div>
+
+            <label>
+              <span>Question</span>
+              <textarea id="questionInput" rows="3" required></textarea>
+            </label>
+
+            <label>
+              <span>Answer</span>
+              <textarea id="answerInput" rows="4" required></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn">Save Card</button>
+            </div>
+          </form>
+        </aside>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
